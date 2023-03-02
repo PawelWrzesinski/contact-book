@@ -1,1 +1,8 @@
-<p>contact works!</p>
+<div>
+    <div>
+        <p>Firstame: {{contact.firstName}}</p>
+        <p>Lastname: {{contact.lastName}}</p>
+        <p>Birthdate: {{contact.birthDate | date: 'dd/MM/yyyy'}}</p>
+        <img width="300" [src]="contact.photoUrl" alt="">
+    </div>
+</div>

@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 app.route('/api/contacts').get(getAllContacts);
 
-app.route('/api/contacts/:firstName/:lastName').get(getContactByFirstNameAndLastName);
+app.route('/api/contacts/:firstName&:lastName').get(getContactByFirstNameAndLastName);
 
 // app.route();
 
