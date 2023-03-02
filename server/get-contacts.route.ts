@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { Contact } from './../src/app/model/contact';
 import { CONTACTS } from "./db-data";
-// import { Contact } from "src/app/model/contact";
 
 export function getAllContacts(req: Request, res: Response) {
 

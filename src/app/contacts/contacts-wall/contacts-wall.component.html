@@ -1,0 +1,7 @@
+<h2>Moje kontakty</h2>
+<div>
+    <div class="contacts" *ngIf="contacts$ | async as contacts">
+        <contact *ngFor="let contact of contacts"></contact>
+    </div>
+
+</div>
