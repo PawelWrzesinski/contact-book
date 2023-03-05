@@ -1,1 +1,6 @@
-<p>contact-search works!</p>
+<div>
+    <p>Filter orders by description</p>
+    <input #firstNameSearchBox type="text" placeholder="firstName term" value="">
+    <input #lastNameSearchBox type="text" placeholder="lastName term" value="">
+    <button (click)="search(firstNameSearchBox.value, lastNameSearchBox.value)">Search</button>
+</div>

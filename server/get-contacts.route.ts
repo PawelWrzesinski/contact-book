@@ -1,4 +1,3 @@
-import { LowerCasePipe } from '@angular/common';
 import { Request, Response } from 'express';
 import { Contact } from './../src/app/model/contact';
 import { CONTACTS } from "./db-data";
@@ -18,7 +17,7 @@ export function getContactByFirstNameAndLastName(
 
     const contacts: Contact[] = Object.values(CONTACTS);
 
-    const contact = contacts.filter(contact => contact.firstName.toLowerCase().includes(contactFirstName) || contact.lastName.toLowerCase().includes(contactLastName));
+    const contact = contacts.filter(contact => contact.firstName.toLowerCase().includes(contactFirstName) && contact.lastName.toLowerCase().includes(contactLastName));
 
     res.status(200).json(contact);
 }

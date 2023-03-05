@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactsService } from '../contacts.service';
 
 @Component({
   selector: 'contact-search',
@@ -7,13 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactSearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private contactsService: ContactsService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  search(term: string): void {
-
+  search(firstNameTerm: string, lastNameTerm: string): void {
+    this.contactsService.findContactByFirstNameAndLastName(firstNameTerm, lastNameTerm).subscribe(
+      contacts => this.contactsService.publishFilteredContacts(contacts)
+    );
   }
-
 }

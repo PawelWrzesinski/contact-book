@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { Contact } from 'src/app/model/contact';
-import { ContactComponent } from '../contact/contact.component';
 import { ContactsService } from '../contacts.service';
 
 @Component({
@@ -11,6 +10,8 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactsWallComponent implements OnInit {
 
+  filteredContactsSub: Subscription | undefined;
+
   contacts$: Observable<Contact[]> | undefined;
 
   constructor(
@@ -18,6 +19,18 @@ export class ContactsWallComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.getContacts();
+    this.filteredContactsSub = this.contactsService.filteredContacts
+      .subscribe(filteredContacts => {
+        if (filteredContacts.length > 0) {
+          this.contacts$ = of(filteredContacts);
+        }
+      }
+      );
+  }
+
+  getContacts() {
     this.contacts$ = this.contactsService.loadContacts();
   }
 
