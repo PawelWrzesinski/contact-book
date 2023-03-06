@@ -1,6 +1,23 @@
-<div>
-    <p>Filter orders by description</p>
-    <input #firstNameSearchBox type="text" placeholder="firstName term" value="">
-    <input #lastNameSearchBox type="text" placeholder="lastName term" value="">
-    <button (click)="search(firstNameSearchBox.value, lastNameSearchBox.value)">Search</button>
+<div class="row">
+    <div class="col-xs-12">
+        <input #firstNameSearchBox type="text" placeholder="firstName term" value="">
+        <input #lastNameSearchBox type="text" placeholder="lastName term" value="">
+        <button (click)="search(firstNameSearchBox.value, lastNameSearchBox.value)">Search</button>
+    </div>
 </div>
+
+
+<!-- <nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <span>
+            <input class="form-control mr-sm-2" type="text" placeholder="firstName" #firstNameSearchBox
+                aria-label="Search">
+        </span>
+        <span>
+            <input class="form-control mr-sm-2" type="text" placeholder="lastName" #lastNameSearchBox
+                aria-label="Search">
+        </span>
+        <button class="btn btn-outline-success my-2 my-sm-0"
+            (click)="search(firstNameSearchBox.value, lastNameSearchBox.value)">Search</button>
+    </form>
+</nav> -->

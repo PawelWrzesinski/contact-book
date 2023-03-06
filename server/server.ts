@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { getAllContacts, getContactByFirstNameAndLastName } from './get-contacts.route';
+import { getAllContacts, getContactByFirstNameAndLastName, getContactById } from './get-contacts.route';
 
 const cors = require('cors');
 
@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 app.route('/api/contacts').get(getAllContacts);
 
 app.route('/api/contacts/:firstName&:lastName').get(getContactByFirstNameAndLastName);
+
+app.route('/api/contacts/:id').get(getContactById);
 
 // app.route();
 

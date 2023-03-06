@@ -1,8 +1,12 @@
-<div>
-    <div>
-        <p>Firstame: {{contact.firstName}}</p>
-        <p>Lastname: {{contact.lastName}}</p>
-        <p>Birthdate: {{contact.birthDate | date: 'dd/MM/yyyy'}}</p>
-        <img width="300" [src]="contact.photoUrl" alt="">
+<a style="cursor: pointer;" [routerLink]="[index]" routerLinkActive="active" class="list-group-item clearfix">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">First name: {{ contact.firstName }}</h4>
+        <h4 class="list-group-item-heading">Last name: {{ contact.lastName }}</h4>
+        <h4 class="list-group-item-heading">Date of birth: {{ contact.birthDate | date: 'dd/MM/yyyy' }}</h4>
     </div>
-</div>
+    <span class="pull-right">
+        <img [src]="contact.photoUrl" alt="{{ contact.firstName + contact.lastName }}" class="img-responsive"
+            style="max-height: 100px;">
+    </span>
+
+</a>

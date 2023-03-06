@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { ContactsService } from '../contacts.service';
 
 @Component({
@@ -9,14 +10,15 @@ import { ContactsService } from '../contacts.service';
 export class ContactSearchComponent implements OnInit {
 
   constructor(
-    private contactsService: ContactsService
+    private contactsService: ContactsService,
+    private dataStorageService: DataStorageService
   ) { }
 
   ngOnInit(): void {
   }
 
   search(firstNameTerm: string, lastNameTerm: string): void {
-    this.contactsService.findContactByFirstNameAndLastName(firstNameTerm, lastNameTerm).subscribe(
+    this.dataStorageService.findContactByFirstNameAndLastName(firstNameTerm, lastNameTerm).subscribe(
       contacts => this.contactsService.publishFilteredContacts(contacts)
     );
   }

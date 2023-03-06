@@ -9,7 +9,10 @@ import { Contact } from 'src/app/model/contact';
 export class ContactComponent implements OnInit {
 
   @Input()
-  contact!: Contact;
+  contact: Contact;
+
+  @Input()
+  index: number;
 
   constructor() { }
 

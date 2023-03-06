@@ -8,6 +8,16 @@ export function getAllContacts(req: Request, res: Response) {
 
 }
 
+export function getContactById(req: Request, res: Response) {
+    const contactId = +req.params['id'];
+
+    const contacts: Contact[] = Object.values(CONTACTS);
+
+    const contact = contacts.filter(contact => contact.id == contactId);
+
+    res.status(200).json(contact);
+}
+
 export function getContactByFirstNameAndLastName(
     req: Request, res: Response) {
 

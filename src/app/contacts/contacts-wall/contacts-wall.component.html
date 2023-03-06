@@ -1,8 +1,10 @@
-<h2>Moje kontakty</h2>
 <contact-search></contact-search>
-<div>
-    <div class="contacts" *ngIf="contacts$ | async as contacts">
-        <contact *ngFor="let contact of contacts" [contact]="contact"></contact>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-success" (click)="onNewContact()">Add contact</button>
     </div>
-
+    <div class="col-xs-12 contacts">
+        <contact *ngFor="let contact of contacts; let i = index" [contact]="contact" [index]="i"></contact>
+    </div>
 </div>

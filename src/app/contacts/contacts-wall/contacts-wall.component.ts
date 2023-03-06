@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
 import { Contact } from 'src/app/model/contact';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { ContactsService } from '../contacts.service';
 
 @Component({
@@ -8,30 +10,46 @@ import { ContactsService } from '../contacts.service';
   templateUrl: './contacts-wall.component.html',
   styleUrls: ['./contacts-wall.component.css']
 })
-export class ContactsWallComponent implements OnInit {
+export class ContactsWallComponent implements OnInit, OnDestroy {
 
   filteredContactsSub: Subscription | undefined;
 
-  contacts$: Observable<Contact[]> | undefined;
+  contactsUpdateSub: Subscription | undefined;
+
+  contacts: Contact[];
 
   constructor(
-    private contactsService: ContactsService
+    private contactsService: ContactsService,
+
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
+
 
   ngOnInit(): void {
 
-    this.getContacts();
+    this.contactsUpdateSub = this.contactsService.contactsChanged.subscribe(contacts => {
+      console.log('Contacts updated.');
+      this.contacts = contacts;
+    });
+
     this.filteredContactsSub = this.contactsService.filteredContacts
       .subscribe(filteredContacts => {
+        console.log(`Filtered contacts count: ${filteredContacts.length}`);
         if (filteredContacts.length > 0) {
-          this.contacts$ = of(filteredContacts);
+          this.contacts = filteredContacts;
         }
       }
       );
   }
 
-  getContacts() {
-    this.contacts$ = this.contactsService.loadContacts();
+
+  onNewContact() {
+    this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  ngOnDestroy(): void {
+    this.filteredContactsSub?.unsubscribe();
   }
 
 }

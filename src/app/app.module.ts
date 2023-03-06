@@ -7,8 +7,11 @@ import { ContactsWallComponent } from './contacts/contacts-wall/contacts-wall.co
 import { ContactsSaveEditComponent } from './contacts/contacts-save-edit/contacts-save-edit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContactComponent } from './contacts/contact/contact.component';
-import { NavigationComponent } from './navigation/navigation.component';
+
 import { ContactSearchComponent } from './contacts/contact-search/contact-search.component';
+import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
+import { ContactsBaseComponent } from './contacts/contacts-base/contacts-base.component';
+
 
 @NgModule({
   declarations: [
@@ -16,8 +19,9 @@ import { ContactSearchComponent } from './contacts/contact-search/contact-search
     ContactsWallComponent,
     ContactsSaveEditComponent,
     ContactComponent,
-    NavigationComponent,
-    ContactSearchComponent
+    ContactSearchComponent,
+    ContactDetailComponent,
+    ContactsBaseComponent
   ],
   imports: [
     BrowserModule,
