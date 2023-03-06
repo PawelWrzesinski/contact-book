@@ -12,9 +12,9 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactsWallComponent implements OnInit, OnDestroy {
 
-  filteredContactsSub: Subscription | undefined;
+  filteredContactsSub: Subscription;
 
-  contactsUpdateSub: Subscription | undefined;
+  contactsUpdateSub: Subscription;
 
   contacts: Contact[];
 
@@ -31,6 +31,7 @@ export class ContactsWallComponent implements OnInit, OnDestroy {
     this.contactsUpdateSub = this.contactsService.contactsChanged.subscribe(contacts => {
       console.log('Contacts updated.');
       this.contacts = contacts;
+      console.log(this.contacts);
     });
 
     this.filteredContactsSub = this.contactsService.filteredContacts
@@ -50,6 +51,7 @@ export class ContactsWallComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.filteredContactsSub?.unsubscribe();
+    this.contactsUpdateSub?.unsubscribe();
   }
 
 }
