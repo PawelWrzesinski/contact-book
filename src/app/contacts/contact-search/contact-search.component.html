@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="col-xs-12">
+        <input #firstNameSearchBox type="text" placeholder="firstName term" value="">
+        <input #lastNameSearchBox type="text" placeholder="lastName term" value="">
+        <button (click)="search(firstNameSearchBox.value, lastNameSearchBox.value)">Search</button>
+    </div>
+</div>

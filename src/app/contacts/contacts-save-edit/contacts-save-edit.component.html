@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" class="btn btn-success" [disabled]="!contactForm.valid">Save</button>
+                    <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="firstName">FirstName</label>
+                        <input type="text" id="firstName" formControlName="contactFirstName" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="firstName">LastName</label>
+                        <input type="text" id="lastName" formControlName="contactLastName" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="photoUrl">Date of birth</label>
+                        <input type="text" id="birthDate" formControlName="contactBirthDate" class="form-control"
+                            #photoUrl>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="photoUrl">Photo URL</label>
+                        <input type="text" id="photoUrl" formControlName="contactPhotoUrl" class="form-control"
+                            #photoUrl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <img [src]="photoUrl.value" class="img-responsive">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
