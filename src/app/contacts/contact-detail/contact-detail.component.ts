@@ -10,7 +10,7 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactDetailComponent implements OnInit {
   contact: Contact;
-  id!: number;
+  id: number;
 
   constructor(
     private contactsService: ContactsService,
@@ -24,6 +24,7 @@ export class ContactDetailComponent implements OnInit {
         (params: Params) => {
           this.id = +params['id'];
           this.contact = this.contactsService.getContact(this.id);
+          // this.id = this.contact.id;
         }
       );
   }
@@ -33,7 +34,12 @@ export class ContactDetailComponent implements OnInit {
   }
 
   onDeleteContact() {
-    this.contactsService.deleteContact(this.id + 1);
+    console.log(this.id);
+    this.contactsService.deleteContact(this.id);
     this.router.navigate(['/contacts']);
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

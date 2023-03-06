@@ -32,12 +32,19 @@ export class ContactsService {
     return this.contacts[index];
   }
 
+  addContact(contact: Contact) {
+    this.contacts.push(contact);
+    this.contactsChanged.next(this.contacts.slice());
+  }
+
+  updateContact(index: number, newContact: Contact) {
+    this.contacts[index] = newContact;
+    this.contactsChanged.next(this.contacts.slice());
+  }
+
   deleteContact(index: number) {
     console.log(`DELETING contact with id : ${index}`);
-    // this.contacts.splice(index, 1);
     this.contacts = this.contacts.filter(contact => contact.id != index);
-
-    console.log(`Contacts lenght : ${this.contacts.length}`);
     this.contactsChanged.next(this.contacts);
   }
 

@@ -9,10 +9,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/contacts', pathMatch: 'full' },
   {
     path: 'contacts',
-    component: ContactsWallComponent,
-    resolve: {
-      // ContactsWallRe
-    }
+    component: ContactsWallComponent
   },
   { path: 'contacts/new', component: ContactsSaveEditComponent },
   {

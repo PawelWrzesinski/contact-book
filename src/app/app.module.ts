@@ -11,6 +11,7 @@ import { ContactComponent } from './contacts/contact/contact.component';
 import { ContactSearchComponent } from './contacts/contact-search/contact-search.component';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { ContactsBaseComponent } from './contacts/contacts-base/contacts-base.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +25,8 @@ import { ContactsBaseComponent } from './contacts/contacts-base/contacts-base.co
     ContactsBaseComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
