@@ -5,7 +5,7 @@ export const CONTACTS: Contact[] = [
         id: 1,
         firstName: 'Monica',
         lastName: 'Geller',
-        birthDate: new Date(1969, 3, 22),
+        birthDate: new Date(1969, 2, 22),
         photoUrl: 'https://i.pinimg.com/originals/46/7f/1c/467f1c16962631aaa421eaab7d1bec72.jpg'
     },
     {

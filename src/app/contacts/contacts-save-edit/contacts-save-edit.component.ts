@@ -39,7 +39,11 @@ export class ContactsSaveEditComponent implements OnInit {
         id: this.contact.id,
         firstName: this.contactForm.value.contactFirstName,
         lastName: this.contactForm.value.contactLastName,
-        birthDate: this.contactForm.value.contactBirthDate,
+        birthDate: new Date(
+          this.contactForm.value.contactBirthDateYear,
+          this.contactForm.value.contactBirthDateMonth,
+          this.contactForm.value.contactBirthDateDay
+        ),
         photoUrl: this.contactForm.value.contactPhotoUrl
       };
       this.contactsService.updateContact(this.contact.id, this.contact, editedContact);
@@ -49,7 +53,11 @@ export class ContactsSaveEditComponent implements OnInit {
         id: this.genId(),
         firstName: this.contactForm.value.contactFirstName,
         lastName: this.contactForm.value.contactLastName,
-        birthDate: this.contactForm.value.contactBirthDate,
+        birthDate: new Date(
+          this.contactForm.value.contactBirthDateYear,
+          this.contactForm.value.contactBirthDateMonth,
+          this.contactForm.value.contactBirthDateDay
+        ),
         photoUrl: this.contactForm.value.contactPhotoUrl
       };
       this.contactsService.addContact(newContact);
@@ -73,21 +81,20 @@ export class ContactsSaveEditComponent implements OnInit {
     let contactLastName = '';
     let contactPhotoUrl = '';
     let contactBirthDate = new Date();
-    // let contactBirthDateYear = contactBirthDate.getFullYear();
-    // let contactBirthDateMonth = contactBirthDate.getMonth();
-    // let contactBirthDateDay = contactBirthDate.getDay();
+    let contactBirthDateYear = contactBirthDate.getFullYear();
+    let contactBirthDateMonth = contactBirthDate.getMonth() + 1;
+    let contactBirthDateDay = contactBirthDate.getDate();
 
 
     if (this.editMode) {
-      // const contact = this.contactsService.getContact(this.id);
       const contact = this.contact;
       contactId = contact.id;
       contactFirstName = contact.firstName;
       contactLastName = contact.lastName;
-      contactBirthDate = contact.birthDate;
-      // contactBirthDateYear = contact.birthDate.getFullYear();
-      // contactBirthDateMonth = contact.birthDate.getMonth();
-      // contactBirthDateDay = contact.birthDate.getDate();
+      contactBirthDate = new Date(contact.birthDate);
+      contactBirthDateYear = contactBirthDate.getFullYear();
+      contactBirthDateMonth = contactBirthDate.getMonth();
+      contactBirthDateDay = contactBirthDate.getDate();
       contactPhotoUrl = contact.photoUrl;
     }
 
@@ -98,17 +105,13 @@ export class ContactsSaveEditComponent implements OnInit {
         contactLastName, Validators.required),
       contactPhotoUrl: new FormControl(
         contactPhotoUrl, Validators.required),
-      contactBirthDate: new FormControl(
-        contactBirthDate, Validators.required)
-      // contactBirthDateYear: new FormControl(
-      //   contactBirthDateYear, Validators.required),
-      // contactBirthDateMonth: new FormControl(
-      //   contactBirthDateMonth, Validators.required),
-      // contactBirthDateDay: new FormControl(
-      //   contactBirthDateDay, Validators.required)
+      contactBirthDateYear: new FormControl(
+        contactBirthDateYear, Validators.required),
+      contactBirthDateMonth: new FormControl(
+        contactBirthDateMonth, Validators.required),
+      contactBirthDateDay: new FormControl(
+        contactBirthDateDay, Validators.required)
     });
-    // console.log('Contact form: ', this.contactForm.valid);
-
   }
 
 }
