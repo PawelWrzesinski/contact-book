@@ -14,7 +14,6 @@ const routes: Routes = [
   { path: 'contacts/new', component: ContactsSaveEditComponent },
   {
     path: 'contacts/:id', component: ContactDetailComponent,
-    // resolve: [ContactsResolverService],
     resolve: {
       contact: ContactsEditResolverService
     }
@@ -22,7 +21,6 @@ const routes: Routes = [
   {
     path: 'contacts/:id/edit',
     component: ContactsSaveEditComponent,
-    // resolve: [ContactsResolverService],
     resolve: {
       contact: ContactsEditResolverService
     }

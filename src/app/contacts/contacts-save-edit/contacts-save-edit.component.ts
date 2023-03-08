@@ -11,10 +11,11 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactsSaveEditComponent implements OnInit {
 
-  id!: number;
+  id: number;
   editMode = false;
   contactForm: FormGroup;
   fb: FormBuilder;
+  contact: Contact;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,11 +24,12 @@ export class ContactsSaveEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-      this.editMode = params['id'] != null;
+    this.route.data.subscribe(data => {
+      this.contact = data['contact'];
+      this.editMode = this.contact.id != null;
       this.initForm();
     });
+
   }
 
   onSubmit() {
@@ -57,7 +59,8 @@ export class ContactsSaveEditComponent implements OnInit {
     let contactBirthDate = new Date();
 
     if (this.editMode) {
-      const contact = this.contactsService.getContact(this.id);
+      // const contact = this.contactsService.getContact(this.id);
+      const contact = this.contact;
       contactId = contact.id;
       contactFirstName = contact.firstName;
       contactLastName = contact.lastName;
