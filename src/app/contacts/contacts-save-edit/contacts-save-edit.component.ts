@@ -33,8 +33,16 @@ export class ContactsSaveEditComponent implements OnInit {
   }
 
   onSubmit() {
+    // console.log('Contact form value', this.contactForm.value);
     if (this.editMode) {
-      this.contactsService.updateContact(this.id, this.contactForm.value);
+      const editedContact: Contact = {
+        id: this.contact.id,
+        firstName: this.contactForm.value.contactFirstName,
+        lastName: this.contactForm.value.contactLastName,
+        birthDate: this.contactForm.value.contactBirthDate,
+        photoUrl: this.contactForm.value.contactPhotoUrl
+      };
+      this.contactsService.updateContact(this.contact.id, this.contact, editedContact);
     } else {
       this.contactsService.addContact(this.contactForm.value);
     }
