@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Contact } from 'src/app/model/contact';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { ContactsService } from '../contacts.service';
 
 @Component({
@@ -11,17 +10,14 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactDetailComponent implements OnInit {
   contact: Contact;
-  id: number;
 
   constructor(
     private contactsService: ContactsService,
     private route: ActivatedRoute,
-    private router: Router,
-    private dataSource: DataStorageService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-
     this.route.data.subscribe(data => {
       this.contact = data['contact'];
     });
@@ -32,8 +28,8 @@ export class ContactDetailComponent implements OnInit {
   }
 
   onDeleteContact() {
-    console.log(this.id);
-    this.contactsService.deleteContact(this.id);
+    console.log(this.contact.id);
+    this.contactsService.deleteContact(this.contact.id);
     this.router.navigate(['/contacts']);
   }
 

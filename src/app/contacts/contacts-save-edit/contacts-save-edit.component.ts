@@ -11,7 +11,7 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactsSaveEditComponent implements OnInit {
 
-  id: number;
+  // id: number;
   editMode = false;
   contactForm: FormGroup;
   fb: FormBuilder;
@@ -25,15 +25,15 @@ export class ContactsSaveEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
-      this.contact = data['contact'];
-      this.editMode = this.contact.id != null;
-      this.initForm();
+      if (data['contact'] && data['contact'].id) {
+        this.contact = data['contact'];
+        this.editMode = true;
+      }
     });
-
+    this.initForm();
   }
 
   onSubmit() {
-    // console.log('Contact form value', this.contactForm.value);
     if (this.editMode) {
       const editedContact: Contact = {
         id: this.contact.id,
@@ -44,7 +44,15 @@ export class ContactsSaveEditComponent implements OnInit {
       };
       this.contactsService.updateContact(this.contact.id, this.contact, editedContact);
     } else {
-      this.contactsService.addContact(this.contactForm.value);
+
+      const newContact: Contact = {
+        id: this.genId(),
+        firstName: this.contactForm.value.contactFirstName,
+        lastName: this.contactForm.value.contactLastName,
+        birthDate: this.contactForm.value.contactBirthDate,
+        photoUrl: this.contactForm.value.contactPhotoUrl
+      };
+      this.contactsService.addContact(newContact);
     }
     this.onCancel();
   }
@@ -60,11 +68,15 @@ export class ContactsSaveEditComponent implements OnInit {
   }
 
   initForm() {
-    let contactId = this.genId();
+    let contactId = 1;
     let contactFirstName = '';
     let contactLastName = '';
     let contactPhotoUrl = '';
     let contactBirthDate = new Date();
+    // let contactBirthDateYear = contactBirthDate.getFullYear();
+    // let contactBirthDateMonth = contactBirthDate.getMonth();
+    // let contactBirthDateDay = contactBirthDate.getDay();
+
 
     if (this.editMode) {
       // const contact = this.contactsService.getContact(this.id);
@@ -73,15 +85,29 @@ export class ContactsSaveEditComponent implements OnInit {
       contactFirstName = contact.firstName;
       contactLastName = contact.lastName;
       contactBirthDate = contact.birthDate;
+      // contactBirthDateYear = contact.birthDate.getFullYear();
+      // contactBirthDateMonth = contact.birthDate.getMonth();
+      // contactBirthDateDay = contact.birthDate.getDate();
       contactPhotoUrl = contact.photoUrl;
     }
 
     this.contactForm = new FormGroup({
-      contactFirstName: new FormControl(contactFirstName, Validators.required),
-      contactLastName: new FormControl(contactLastName, Validators.required),
-      contactPhotoUrl: new FormControl(contactPhotoUrl, Validators.required),
-      contactBirthDate: new FormControl(contactBirthDate, Validators.required)
+      contactFirstName: new FormControl(
+        contactFirstName, Validators.required),
+      contactLastName: new FormControl(
+        contactLastName, Validators.required),
+      contactPhotoUrl: new FormControl(
+        contactPhotoUrl, Validators.required),
+      contactBirthDate: new FormControl(
+        contactBirthDate, Validators.required)
+      // contactBirthDateYear: new FormControl(
+      //   contactBirthDateYear, Validators.required),
+      // contactBirthDateMonth: new FormControl(
+      //   contactBirthDateMonth, Validators.required),
+      // contactBirthDateDay: new FormControl(
+      //   contactBirthDateDay, Validators.required)
     });
+    // console.log('Contact form: ', this.contactForm.valid);
 
   }
 
