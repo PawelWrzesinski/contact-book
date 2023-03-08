@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Contact } from 'src/app/model/contact';
 import { ContactsService } from '../contacts.service';
 
 @Component({
@@ -43,7 +44,13 @@ export class ContactsSaveEditComponent implements OnInit {
   }
 
 
+  genId(): number {
+    const contacts: Contact[] = this.contactsService.getContacts();
+    return contacts.length > 0 ? Math.max(...contacts.map(contact => contact.id)) + 1 : 1;
+  }
+
   initForm() {
+    let contactId = this.genId();
     let contactFirstName = '';
     let contactLastName = '';
     let contactPhotoUrl = '';
@@ -51,6 +58,7 @@ export class ContactsSaveEditComponent implements OnInit {
 
     if (this.editMode) {
       const contact = this.contactsService.getContact(this.id);
+      contactId = contact.id;
       contactFirstName = contact.firstName;
       contactLastName = contact.lastName;
       contactBirthDate = contact.birthDate;

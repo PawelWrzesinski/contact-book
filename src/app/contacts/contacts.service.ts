@@ -28,8 +28,8 @@ export class ContactsService {
     return this.contacts.slice();
   }
 
-  getContact(index: number) {
-    return this.contacts[index];
+  getContact(id: number) {
+    return this.contacts[id - 1];
   }
 
   addContact(contact: Contact) {
@@ -37,14 +37,14 @@ export class ContactsService {
     this.contactsChanged.next(this.contacts.slice());
   }
 
-  updateContact(index: number, newContact: Contact) {
-    this.contacts[index] = newContact;
+  updateContact(id: number, newContact: Contact) {
+    this.contacts[id] = newContact;
     this.contactsChanged.next(this.contacts.slice());
   }
 
-  deleteContact(index: number) {
-    console.log(`DELETING contact with id : ${index}`);
-    this.contacts = this.contacts.filter(contact => contact.id != index);
+  deleteContact(id: number) {
+    console.log(`DELETING contact with id : ${id}`);
+    this.contacts = this.contacts.filter(contact => contact.id != id);
     this.contactsChanged.next(this.contacts);
   }
 

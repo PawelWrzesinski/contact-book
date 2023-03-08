@@ -5,6 +5,6 @@
         <button class="btn btn-success" (click)="onNewContact()">Add contact</button>
     </div>
     <div class="col-xs-12 contacts">
-        <contact *ngFor="let contact of contacts" [contact]="contact" [index]="contact.id - 1"></contact>
+        <contact *ngFor="let contact of contacts" [contact]="contact" [id]="contact.id"></contact>
     </div>
 </div>

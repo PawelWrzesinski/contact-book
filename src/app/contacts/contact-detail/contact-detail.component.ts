@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Contact } from 'src/app/model/contact';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { ContactsService } from '../contacts.service';
 
 @Component({
@@ -15,18 +16,15 @@ export class ContactDetailComponent implements OnInit {
   constructor(
     private contactsService: ContactsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private dataSource: DataStorageService
   ) { }
 
   ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params['id'];
-          this.contact = this.contactsService.getContact(this.id);
-          // this.id = this.contact.id;
-        }
-      );
+
+    this.route.data.subscribe(data => {
+      this.contact = data['contact'];
+    });
   }
 
   onEditContact() {
