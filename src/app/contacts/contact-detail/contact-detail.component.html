@@ -1,28 +1,37 @@
-<div class="row">
-    <div class="col-xs-12">
-        <img [src]="contact.photoUrl" alt="{{ contact.firstName + ' ' + contact.lastName }}" class="img-responsive"
-            style="max-height: 300px;">
+<ng-container *ngIf="contact">
+    <div class="row">
+
+        <div class="col-xs-12">
+            <img [src]="contact.photoUrl" alt="{{ contact.firstName + ' ' + contact.lastName }}" class="img-responsive"
+                style="max-height: 300px;">
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h1>First name: {{ contact.firstName }}</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>ID: {{ contact.id }}</h1>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h1>Last name: {{ contact.lastName }}</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>First name: {{ contact.firstName }}</h1>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h1>Date of birth: {{ contact.birthDate | date: 'dd/MM/yyyy' }}</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Last name: {{ contact.lastName }}</h1>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Date of birth: {{ contact.birthDate | date: 'dd/MM/yyyy' }}</h1>
+        </div>
+    </div>
+</ng-container>
 <div class="row">
     <div class="col-xs-12">
         <button type="button" class="btn btn-warning" (click)="onEditContact()">Edit Contact</button>
         <button type="button" class="btn btn-danger" (click)="onDeleteContact()">Delete Contact</button>
         <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
     </div>
+
 </div>

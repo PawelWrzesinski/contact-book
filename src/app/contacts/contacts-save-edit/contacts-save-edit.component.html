@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="firstName">LastName</label>
+                        <label for="lastName">LastName</label>
                         <input type="text" id="lastName" formControlName="contactLastName" class="form-control">
                     </div>
                 </div>
@@ -26,9 +26,20 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="photoUrl">Date of birth</label>
-                        <input type="text" id="birthDate" formControlName="contactBirthDate" class="form-control"
-                            #photoUrl>
+                        <label for="birthDate">Date of birth</label>
+                        <!-- <input type="text" id="birthDate" formControlName="contactBirthDate" class="form-control"> -->
+                        <div>
+                            <span>Year: </span>
+                            <input type="text" id="birthDateYear" formControlName="contactBirthDateYear"
+                                class="form-control">
+                            <span>Month: </span>
+                            <input type="text" id="birthDateMonth" formControlName="contactBirthDateMonth"
+                                class="form-control">
+                            <span>Day: </span>
+                            <input type="text" id="birthDateDay" formControlName="contactBirthDateDay"
+                                class="form-control">
+                        </div>
+
                     </div>
                 </div>
             </div>

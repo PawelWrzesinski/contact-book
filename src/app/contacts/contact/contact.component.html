@@ -1,11 +1,12 @@
-<a style="cursor: pointer;" [routerLink]="[index]" routerLinkActive="active" class="list-group-item clearfix">
+<a style="cursor: pointer;" [routerLink]="[id]" routerLinkActive="active" class="list-group-item clearfix">
     <div class="pull-left">
+        <h4 class="list-group-item-heading">ID: {{ contact.id }}</h4>
         <h4 class="list-group-item-heading">First name: {{ contact.firstName }}</h4>
         <h4 class="list-group-item-heading">Last name: {{ contact.lastName }}</h4>
         <h4 class="list-group-item-heading">Date of birth: {{ contact.birthDate | date: 'dd/MM/yyyy' }}</h4>
     </div>
     <span class="pull-right">
-        <img [src]="contact.photoUrl" alt="{{ contact.firstName + contact.lastName }}" class="img-responsive"
+        <img [src]="contact.photoUrl" alt="{{ contact.firstName + contact.lastName + 'Photo'}}" class="img-responsive"
             style="max-height: 100px;">
     </span>
 

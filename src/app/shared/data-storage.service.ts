@@ -36,7 +36,7 @@ export class DataStorageService {
   }
 
   findContactById(id: number): Observable<Contact> {
-    return this.http.get<Contact>('/api/contacts/id');
+    return this.http.get<Contact>(`/api/contacts/${id}`);
   }
 
 }

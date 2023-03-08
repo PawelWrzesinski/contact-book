@@ -12,7 +12,7 @@ export class ContactComponent implements OnInit {
   contact: Contact;
 
   @Input()
-  index: number;
+  id: number;
 
   constructor() { }
 

@@ -31,7 +31,6 @@ export class ContactsWallComponent implements OnInit, OnDestroy {
     this.contactsUpdateSub = this.contactsService.contactsChanged.subscribe(contacts => {
       console.log('Contacts updated.');
       this.contacts = contacts;
-      console.log(this.contacts);
     });
 
     this.filteredContactsSub = this.contactsService.filteredContacts

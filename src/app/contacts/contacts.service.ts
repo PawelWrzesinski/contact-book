@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, concat, Observable, Subject } from 'rxjs';
 import { Contact } from '../model/contact';
 
 @Injectable({
@@ -28,7 +28,9 @@ export class ContactsService {
     return this.contacts.slice();
   }
 
-  getContact(index: number) {
+  getContact(contactId: number) {
+    const index: number = this.contacts.findIndex(contact =>
+      contactId === contact.id);
     return this.contacts[index];
   }
 
@@ -37,14 +39,25 @@ export class ContactsService {
     this.contactsChanged.next(this.contacts.slice());
   }
 
-  updateContact(index: number, newContact: Contact) {
-    this.contacts[index] = newContact;
+  updateContact(currentContactId: number, currentContact: Contact, editedContact: Contact) {
+    // console.log(this.contacts);
+    // console.log('ID', currentContactId);
+    // console.log(currentContact);
+    // console.log(editedContact);
+    // const contact = this.contacts.filter(contact => contact.id === currentContactId);
+
+    // const index: number = this.contacts.findIndex(contactSearch =>
+    //   contact[0].id === currentContact.id);
+    const index: number = this.contacts.findIndex(contact =>
+      currentContactId === contact.id);
+    console.log('INDEX', index);
+    this.contacts[index] = editedContact;
     this.contactsChanged.next(this.contacts.slice());
   }
 
-  deleteContact(index: number) {
-    console.log(`DELETING contact with id : ${index}`);
-    this.contacts = this.contacts.filter(contact => contact.id != index);
+  deleteContact(id: number) {
+    console.log(`DELETING contact with id : ${id}`);
+    this.contacts = this.contacts.filter(contact => contact.id != id);
     this.contactsChanged.next(this.contacts);
   }
 

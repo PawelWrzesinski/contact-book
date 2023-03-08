@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Contact } from 'src/app/model/contact';
 import { ContactsService } from '../contacts.service';
 
@@ -10,7 +10,6 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactDetailComponent implements OnInit {
   contact: Contact;
-  id: number;
 
   constructor(
     private contactsService: ContactsService,
@@ -19,14 +18,9 @@ export class ContactDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params['id'];
-          this.contact = this.contactsService.getContact(this.id);
-          // this.id = this.contact.id;
-        }
-      );
+    this.route.data.subscribe(data => {
+      this.contact = data['contact'];
+    });
   }
 
   onEditContact() {
@@ -34,8 +28,8 @@ export class ContactDetailComponent implements OnInit {
   }
 
   onDeleteContact() {
-    console.log(this.id);
-    this.contactsService.deleteContact(this.id);
+    console.log(this.contact.id);
+    this.contactsService.deleteContact(this.contact.id);
     this.router.navigate(['/contacts']);
   }
 

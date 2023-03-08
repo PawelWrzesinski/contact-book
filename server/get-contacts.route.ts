@@ -13,7 +13,9 @@ export function getContactById(req: Request, res: Response) {
 
     const contacts: Contact[] = Object.values(CONTACTS);
 
-    const contact = contacts.filter(contact => contact.id == contactId);
+    // const contact = contacts.filter(contact => contact.id == contactId);
+
+    const contact = contacts.find(contact => contact.id == contactId);
 
     res.status(200).json(contact);
 }
